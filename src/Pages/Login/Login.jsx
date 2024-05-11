@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const Login = () => {
-    const {signIn, signinWithGoogle, signinWithGitHub} = useContext(AuthContext);
+    const { signIn, signinWithGoogle, signinWithGitHub } = useContext(AuthContext);
     const location = useLocation()
     const navigate = useNavigate()
     const handleLogin = e => {
@@ -14,7 +14,7 @@ const Login = () => {
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
-        const user = {email, password}
+        const user = { email, password }
         signIn(email, password)
             .then(() => {
                 Swal.fire({
@@ -32,7 +32,7 @@ const Login = () => {
                     text: error.message,
                     icon: 'error',
                     confirmButtonText: 'try again'
-                  })
+                })
             })
         console.log(user);
     }
@@ -54,30 +54,10 @@ const Login = () => {
                     text: error.message,
                     icon: 'error',
                     confirmButtonText: 'try again'
-                  })
-            })
-    }
-    // sing in github
-    const handleGitHubLogIn = () => {
-        signinWithGitHub()
-            .then(() => {
-                Swal.fire({
-                    title: "Success!",
-                    text: 'Login Successfully',
-                    icon: 'success',
-                    confirmButtonText: 'OK'
                 })
-                navigate(location?.state || '/')
-            })
-            .catch(error => {
-                Swal.fire({
-                    title: 'Error!',
-                    text: error.message,
-                    icon: 'error',
-                    confirmButtonText: 'try again'
-                  })
             })
     }
+ 
     return (
         <div className=" min-h-screen bg-base-200 my-12">
             <div className="hero-content w-full p-4 lg:gap-4 gap-0 flex-col lg:flex-row-reverse">
@@ -110,12 +90,12 @@ const Login = () => {
                         </div>
                     </form>
                     <div>
-                        <h2 className=" text-center font-medium">or login with </h2>
+                        <h2 className=" text-center  px-3 text-sm">Login with social accounts </h2>
                         <div className="flex gap-3 text-2xl justify-center items-center my-3">
                             <button onClick={handleGoogleLogin} className="w-10 h-10 rounded-full flex justify-center items-center bg-gray-200">
                                 <FcGoogle className="text-xl "></FcGoogle>
                             </button>
-                            <button onClick={handleGitHubLogIn} className="w-10 h-10 rounded-full flex justify-center items-center bg-gray-200">
+                            <button  className="w-10 h-10 rounded-full flex justify-center items-center bg-gray-200">
                                 <FaGithub className="text-xl"></FaGithub>
                             </button>
                         </div>
