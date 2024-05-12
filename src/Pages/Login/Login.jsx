@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const Login = () => {
-    const { signIn, signinWithGoogle, signinWithGitHub } = useContext(AuthContext);
+    const { signIn, signinWithGoogle, } = useContext(AuthContext);
     const location = useLocation()
     const navigate = useNavigate()
     const handleLogin = e => {

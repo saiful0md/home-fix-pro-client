@@ -1,14 +1,13 @@
-import { useLoaderData } from "react-router-dom";
-import PopularServices from "../../components/PopularServices";
+
+import PopularServices from "../../components/PopularServices/PopularServices";
 import Slider from "../../components/Slider";
 
 
 const Home = () => {
-    const allServices = useLoaderData();
     return (
         <div>
             <Slider></Slider>
-            <PopularServices allServices={allServices}></PopularServices>
+            <PopularServices></PopularServices>
         </div>
     );
 };
