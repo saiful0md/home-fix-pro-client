@@ -4,11 +4,11 @@ import { Fade } from 'react-awesome-reveal';
 import ServiceCard from './ServiceCard';
 
 const PopularServices = () => {
-    const [allServices, setAllServices]=useState([])
+    const [services, setServices]=useState([]);
     useEffect(()=>{
         const loadData = async()=>{
-            const {data} = await axios(`${import.meta.env.VITE_API_URL}/allServices`)
-            setAllServices(data)
+            const {data} = await axios(`${import.meta.env.VITE_API_URL}/services`)
+            setServices(data)
         }
         loadData()
     },[])
@@ -24,7 +24,7 @@ const PopularServices = () => {
             </div>
             <div className='grid grid-cols-2 gap-4'>
                 {
-                    allServices.map(service => <ServiceCard key={service._id} service={service}></ServiceCard>)
+                    services.map(service => <ServiceCard key={service._id} service={service}></ServiceCard>)
                 }
             </div>
         </div>

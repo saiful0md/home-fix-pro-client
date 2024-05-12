@@ -1,14 +1,10 @@
 import axios from "axios";
 import { useContext } from "react";
-import { FaArrowLeft } from "react-icons/fa6";
-import { Link, useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 
-const AddService = () => {
-    const { user } = useContext(AuthContext);
-    const navigate = useNavigate()
+const BookingInformation = () => {
+    const {user} = useContext(AuthContext)
     const handleAddService = async e => {
         e.preventDefault();
         const form = e.target;
@@ -30,16 +26,8 @@ const AddService = () => {
             }
         }
         try {
-            const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/service`, servicedata)
-            if(data.insertedId){
-                Swal.fire({
-                    title: "Success!",
-                    text: 'Added Successfully',
-                    icon: 'success',
-                    confirmButtonText: 'OK'
-                })
-                navigate('/manageService')
-            }
+            const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/addService`, servicedata)
+
             console.log(data);
         }
         catch (err) {
@@ -48,12 +36,9 @@ const AddService = () => {
     }
     return (
         <div className=" min-h-screen my-12">
-            <Link to={'/'} className="w-8 h-8 flex items-center justify-center rounded-full bg-amber-500 text-white hover:bg-amber-600">
-                <FaArrowLeft></FaArrowLeft>
-            </Link>
             <div className="hero-content flex-col ">
                 <div className="text-center lg:text-left">
-                    <h1 className="text-5xl font-bold">Add Service</h1>
+                    <h1 className="text-5xl font-bold">Booking Information Service</h1>
                 </div>
                 <div className="card  w-full shadow-2xl bg-base-100">
                     <form onSubmit={handleAddService} className="card-body w-full">
@@ -118,7 +103,7 @@ const AddService = () => {
                             </div>
                         </div>
                         <div className="form-control mt-6">
-                            <button className="btn  bg-amber-500 text-white hover:bg-amber-600 ">Add</button>
+                            <button className="btn  bg-amber-500 text-white hover:bg-amber-600 ">Purchase Button</button>
                         </div>
                     </form>
                 </div>
@@ -127,4 +112,4 @@ const AddService = () => {
     );
 };
 
-export default AddService;
+export default BookingInformation;

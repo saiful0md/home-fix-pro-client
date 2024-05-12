@@ -2,17 +2,24 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 const ServiceCard = ({ service }) => {
-    const { service_description, service_image, service_name, service_provider, _id } = service
+    const { serviceDescription, serviceImage, price, serviceName, serviceProvider, _id } = service
     return (
         <div className="card  bg-base-100 shadow-xl">
-            <figure><img src={service_image} alt={service_name} /></figure>
+            <figure><img className='h-[400px] w-full' src={serviceImage} alt={serviceName} /></figure>
             <div className="card-body">
-                <h2 className="card-title">{service_name}</h2>
-                <p>{service_description}</p>
-                <p>service provider: <img src={service_provider.image} alt="ss" />   {service_provider.name}</p>
+                <div className="avatar flex-col  gap-4">
+                    <p className='text-xl font-semibold'>Service Provider:</p>
+                    <div className="w-12 rounded-full">
+                        <img src={serviceProvider.image} />
+                    </div>
+                    <p><span className='font-semibold'>Name:</span> {serviceProvider.name}</p>
+                </div>
+                <h2> <span className="font-semibold">Service Name:</span> {serviceName}</h2>
+                <p title={serviceDescription}><span className='font-semibold'>Description:</span> {serviceDescription.substring(0, 80)}...</p>
 
+                <p><span className='font-semibold'>Price:</span> ${price}</p>
                 <div className="card-actions justify-end">
-                    <Link to={`/service/${_id}`} className="btn bg-amber-500 text-white hover:bg-amber-600 ">View Detail</Link>
+                    <Link to={`/service/${_id}`} className="btn bg-amber-500 text-white hover:bg-amber-600 ">View Details</Link>
                 </div>
             </div>
         </div>
