@@ -1,22 +1,62 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
+import { FaEdit } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
+import Swal from "sweetalert2";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 
 const ManageServices = () => {
     const [services, setServices] = useState([])
     const { user } = useContext(AuthContext)
+    const getData = async () => {
+        const serviceData = await axios.get(`${import.meta.env.VITE_API_URL}/services/${user?.email}`)
+        setServices(serviceData.data)
+    }
     useEffect(() => {
-        const getData = async () => {
-            const serviceData = await axios.get(`${import.meta.env.VITE_API_URL}/services/${user?.email}`)
-            setServices(serviceData.data)
-        }
         getData()
-    }, [user?.email])
-    console.log(services);
+    }, [user.email])
+    const handleUpdate =()=>{
+        
+    }
+    const handleDelete =async id=>{
+        try{
+            const {data} =await axios.delete(`${import.meta.env.VITE_API_URL}/service/${id}`)
+            console.log(data);
+            if(data.deletedCount){
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                      Swal.fire({
+                        title: "Deleted!",
+                        text: "Your file has been deleted.",
+                        icon: "success"
+                      });
+                      getData()
+                    }
+                  });
+            }
+        }
+        catch(err){
+            console.log(err);
+            Swal.fire({
+                title: "Oops!",
+                text: err.message ,
+                icon: 'error',
+                confirmButtonText: 'try again'
+            })
+        }
+    }
     return (
         <div className="my-12">
-            {/* <h2 className="text-2xl font-bold text-center mb-12">Manage Services Data</h2> */}
+            <h2 className="text-2xl font-bold text-center mb-12">Manage My Services <span className="badge text-white bg-amber-500 rounded-full">{services.length}</span></h2>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                 {
                     services.map(service =>
@@ -36,13 +76,21 @@ const ManageServices = () => {
                                 <p title={service.serviceDescription}><span className='font-semibold'>Description:</span> {service.serviceDescription.substring(0, 20)}...</p>
 
                                 <p><span className='font-semibold'>Price:</span> ${service.price}</p>
-                                <div className="card-actions justify-end">
-                                    {/* <Link to={`/service/${_id}`} className="btn bg-amber-500 text-white hover:bg-amber-600 ">View Details</Link> */}
-                                </div>
+
                             </div>
                             <div className="lg:mr-4 mb-4 flex gap-4 lg:flex-col">
-                                <button className="btn bg-amber-500 text-white hover:bg-amber-600">update</button>
-                                <button className="btn bg-red-600 text-white hover:bg-red-700">delete</button>
+                                <button
+                                onClick={handleUpdate}
+                                    className="btn btn-sm bg-amber-500 text-white hover:bg-amber-600"
+                                >
+                                    <FaEdit></FaEdit>
+                                </button>
+                                <button
+                                onClick={()=>handleDelete(service._id)}
+                                    className="btn btn-sm bg-red-600 text-white hover:bg-red-700"
+                                >
+                                    <MdDelete></MdDelete>
+                                </button>
                             </div>
                         </div>
                     )

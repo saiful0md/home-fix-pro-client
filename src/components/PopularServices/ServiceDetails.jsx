@@ -62,6 +62,12 @@ const ServiceDetails = () => {
         }
         catch(err){
             console.log(err);
+            Swal.fire({
+                title: "Oops!",
+                text: err.message ,
+                icon: 'error',
+                confirmButtonText: 'try again'
+            })
         }
 
     }
