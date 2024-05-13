@@ -60,7 +60,7 @@ const Navbar = () => {
         </label>
     </>
     return (
-        <div className="navbar bg-base-100">
+        <div className="navbar border font-bold rounded-md">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -70,7 +70,7 @@ const Navbar = () => {
                         {navLinks}
                     </ul>
                 </div>
-                <Link to={'/'} className=" text-xl font-bold flex justify-center lg:gap-2 items-center"><img className="rounded-lg w-11" src="https://i.ibb.co/ygg4ZgC/Modern-Home-Fix-Construction-Logo-1.png" alt="" />HomeFixPro</Link>
+                <Link to={'/'} className="ml-5 lg:ml-0 text-xl font-bold flex justify-center lg:gap-2 items-center"><img className="rounded-lg w-11" src="https://i.ibb.co/ygg4ZgC/Modern-Home-Fix-Construction-Logo-1.png" alt="" />HomeFixPro</Link>
 
             </div>
             <div className="navbar-center hidden lg:flex">

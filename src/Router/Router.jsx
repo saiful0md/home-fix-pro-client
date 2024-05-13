@@ -1,7 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import Root from "../LayOut/Root";
 import AddService from "../Pages/AddService/AddService";
-import BookedService from "../Pages/BookedService/BookedService";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
@@ -44,7 +43,9 @@ const Router = createBrowserRouter([
             },
             {
                 path: '/serviceToDo',
-                element: <ServiceToDo></ServiceToDo>,
+                element: <ProtectorRuout>
+                    <ServiceToDo></ServiceToDo>
+                </ProtectorRuout>,
                 loader: () => fetch(`${import.meta.env.VITE_API_URL}/serviceToDo`)
             },
             {
@@ -53,12 +54,13 @@ const Router = createBrowserRouter([
                     <ManageServices></ManageServices>
                 </ProtectorRuout>,
             },
-            {
-                path: '/bookedServices',
-                element: <ProtectorRuout>
-                    <BookedService></BookedService>
-                </ProtectorRuout>
-            }
+            // {
+            //     path: '/bookedServices/:email',
+            //     element: <ProtectorRuout>
+            //         <BookedService></BookedService>
+            //     </ProtectorRuout>,
+            //     loader: ({ params }) => fetch(`${import.meta.env.VITE_API_URL}/bookedServices/${params.email}`)
+            // }
         ]
     }
 ])

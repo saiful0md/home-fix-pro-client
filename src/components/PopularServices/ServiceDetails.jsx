@@ -17,6 +17,15 @@ const ServiceDetails = () => {
 
     const handleBookedService = async e => {
         e.preventDefault();
+        if(user?.email === serviceProvider.email){
+            Swal.fire({
+                title: 'Error!',
+                text: 'You are a Provider',
+                icon: 'error',
+                confirmButtonText: 'try again'
+            })
+            return
+        }
         const form = e.target;
         const serviceId = form.serviceId.value;
         const serviceName = form.serviceName.value;
@@ -35,18 +44,16 @@ const ServiceDetails = () => {
             dateData,
             userEmail,
             userName,
-            serviceProvider: {
-                // name:
-            }
+            serviceProvider
         }
-        console.table(servicedata);
+        console.log(servicedata);
         try{
             const {data} = await axios.post(`${import.meta.env.VITE_API_URL}/booking`, servicedata)
             console.log(data);
             if(data.insertedId){
                 Swal.fire({
                     title: "Success!",
-                    text: 'Added Successfully',
+                    text: 'Booked Successfully',
                     icon: 'success',
                     confirmButtonText: 'OK'
                 })
@@ -118,13 +125,13 @@ const ServiceDetails = () => {
                                         <label className="label">
                                             <span className="label-text">Provider Email</span>
                                         </label>
-                                        <input type="email" name="providerEmail" readOnly defaultValue={user.email} placeholder="Provider Email" className="input input-bordered" required />
+                                        <input type="email" name="providerEmail" readOnly defaultValue={serviceProvider.email} placeholder="Provider Email" className="input input-bordered" required />
                                     </div>
                                     <div className="form-control ">
                                         <label className="label">
                                             <span className="label-text">Provider Name</span>
                                         </label>
-                                        <input type="text" name="providerName" readOnly defaultValue={user.displayName} placeholder="Provider Name" className="input input-bordered" required />
+                                        <input type="text" name="providerName" readOnly defaultValue={serviceProvider.name} placeholder="Provider Name" className="input input-bordered" required />
                                     </div>
                                 </div>
                                 {/* form col 2 */}
