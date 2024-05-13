@@ -28,7 +28,7 @@ const Navbar = () => {
 
         {
             user &&
-            <li className="dropdown dropdown-end z-10">
+            <li className="dropdown dropdown-end z-50">
                 <details>
                     <summary tabIndex={0}>Dashboard</summary>
                     <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
@@ -39,17 +39,6 @@ const Navbar = () => {
                     </ul>
                 </details>
             </li>
-            // <li className="z-10">
-            //     <details>
-            //         <summary>Dashboard</summary>
-            //         <ul tabIndex={0} className="p-2 menu dropdown-content w-52">
-            //             <li><NavLink to={'/addService'}>Add Service</NavLink></li>
-            //             <li><NavLink to={'/manageService'}>Manage Service</NavLink></li>
-            //             <li><NavLink to={'/bookedServices'}>Booked-Services</NavLink></li>
-            //             <li><NavLink to={'/serviceToDo'}>Service-To-Do</NavLink></li>
-            //         </ul>
-            //     </details>
-            // </li>
         }
         {/* theme toggle */}
         <label className="swap swap-rotate">

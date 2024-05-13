@@ -1,12 +1,13 @@
 import { createBrowserRouter } from "react-router-dom";
 import Root from "../LayOut/Root";
 import AddService from "../Pages/AddService/AddService";
-import BookingInformation from "../Pages/BookingInformation/BookingInformation";
+import BookedService from "../Pages/BookedService/BookedService";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
 import ManageServices from "../Pages/ManageServices/ManageServices";
 import Register from "../Pages/Register/Register";
+import ServiceToDo from "../Pages/ServiceToDo/ServiceToDo";
 import ServiceDetails from "../components/PopularServices/ServiceDetails";
 import ProtectorRuout from "../components/ProtectorRuout";
 
@@ -42,12 +43,21 @@ const Router = createBrowserRouter([
                 loader: ({ params }) => fetch(`${import.meta.env.VITE_API_URL}/service/${params.id}`)
             },
             {
-                path: '/manageService',
-                element: <ManageServices></ManageServices>
+                path: '/serviceToDo',
+                element: <ServiceToDo></ServiceToDo>,
+                loader: () => fetch(`${import.meta.env.VITE_API_URL}/serviceToDo`)
             },
             {
-                path: '/bookingInformation',
-                element: <BookingInformation></BookingInformation>
+                path: '/manageService',
+                element: <ProtectorRuout>
+                    <ManageServices></ManageServices>
+                </ProtectorRuout>,
+            },
+            {
+                path: '/bookedServices',
+                element: <ProtectorRuout>
+                    <BookedService></BookedService>
+                </ProtectorRuout>
             }
         ]
     }
