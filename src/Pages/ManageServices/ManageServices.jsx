@@ -1,7 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
+import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 
@@ -15,15 +17,13 @@ const ManageServices = () => {
     }
     useEffect(() => {
         getData()
-    }, [user.email])
-    const handleUpdate =()=>{
-        
-    }
-    const handleDelete =async id=>{
-        try{
-            const {data} =await axios.delete(`${import.meta.env.VITE_API_URL}/service/${id}`)
+    }, [getData, user.email])
+
+    const handleDelete = async id => {
+        try {
+            const { data } = await axios.delete(`${import.meta.env.VITE_API_URL}/service/${id}`)
             console.log(data);
-            if(data.deletedCount){
+            if (data.deletedCount) {
                 Swal.fire({
                     title: "Are you sure?",
                     text: "You won't be able to revert this!",
@@ -32,23 +32,23 @@ const ManageServices = () => {
                     confirmButtonColor: "#3085d6",
                     cancelButtonColor: "#d33",
                     confirmButtonText: "Yes, delete it!"
-                  }).then((result) => {
+                }).then((result) => {
                     if (result.isConfirmed) {
-                      Swal.fire({
-                        title: "Deleted!",
-                        text: "Your file has been deleted.",
-                        icon: "success"
-                      });
-                      getData()
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Your file has been deleted.",
+                            icon: "success"
+                        });
+                        getData()
                     }
-                  });
+                });
             }
         }
-        catch(err){
+        catch (err) {
             console.log(err);
             Swal.fire({
                 title: "Oops!",
-                text: err.message ,
+                text: err.message,
                 icon: 'error',
                 confirmButtonText: 'try again'
             })
@@ -79,14 +79,15 @@ const ManageServices = () => {
 
                             </div>
                             <div className="lg:mr-4 mb-4 flex gap-4 lg:flex-col">
+                                <Link to={`/updateService/${service._id}`}>
+                                    <button
+                                        className="btn btn-sm bg-amber-500 text-white hover:bg-amber-600"
+                                    >
+                                        <FaEdit></FaEdit>
+                                    </button>
+                                </Link>
                                 <button
-                                onClick={handleUpdate}
-                                    className="btn btn-sm bg-amber-500 text-white hover:bg-amber-600"
-                                >
-                                    <FaEdit></FaEdit>
-                                </button>
-                                <button
-                                onClick={()=>handleDelete(service._id)}
+                                    onClick={() => handleDelete(service._id)}
                                     className="btn btn-sm bg-red-600 text-white hover:bg-red-700"
                                 >
                                     <MdDelete></MdDelete>

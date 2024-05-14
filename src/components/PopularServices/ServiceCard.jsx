@@ -18,7 +18,7 @@ const ServiceCard = ({ service }) => {
                 <p title={serviceDescription}><span className='font-semibold'>Description:</span> {serviceDescription.substring(0, 80)}...</p>
 
                 <p><span className='font-semibold'>Price:</span> ${price}</p>
-                <div className="card-actions justify-end">
+                <div className="card-actions ">
                     <Link to={`/service/${_id}`} className="btn bg-amber-500 text-white hover:bg-amber-600 ">View Details</Link>
                 </div>
             </div>

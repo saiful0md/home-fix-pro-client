@@ -8,6 +8,7 @@ import Login from "../Pages/Login/Login";
 import ManageServices from "../Pages/ManageServices/ManageServices";
 import Register from "../Pages/Register/Register";
 import ServiceToDo from "../Pages/ServiceToDo/ServiceToDo";
+import UpdateService from "../Pages/UpdateService";
 import ServiceDetails from "../components/PopularServices/ServiceDetails";
 import ProtectorRuout from "../components/ProtectorRuout";
 
@@ -39,6 +40,13 @@ const Router = createBrowserRouter([
                 path: '/service/:id',
                 element: <ProtectorRuout>
                     <ServiceDetails></ServiceDetails>
+                </ProtectorRuout>,
+                loader: ({ params }) => fetch(`${import.meta.env.VITE_API_URL}/service/${params.id}`)
+            },
+            {
+                path: '/updateService/:id',
+                element: <ProtectorRuout>
+                    <UpdateService></UpdateService>
                 </ProtectorRuout>,
                 loader: ({ params }) => fetch(`${import.meta.env.VITE_API_URL}/service/${params.id}`)
             },
