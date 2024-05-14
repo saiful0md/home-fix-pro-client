@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
-import { IoIosCloudDone } from "react-icons/io";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 
@@ -28,6 +27,7 @@ const ServiceToDo = () => {
         }
         const { data } = await axios.patch(`${import.meta.env.VITE_API_URL}/bookingStatus/${id}`, { status })
         console.log(data);
+        getData()
     }
     return (
         <div className="my-12">
@@ -69,17 +69,15 @@ const ServiceToDo = () => {
                                  ${service.status === 'Completed' && 'bg-green-100/80 text-green-500'}
                                  `}
                                 >{service.status}</span>
-                                {/* complete button */}
-                                <button
-                                    onClick={() => handleStatus(service._id, service.status, 'Working')}
-                                    disabled={service.state == 'Completed'}
-                                    className="btn btn-xs bg-transparent"><IoIosCloudDone className="text-2xl text-green-500"></IoIosCloudDone>
-                                </button>
-                                <button
-                                    onClick={() => handleStatus(service._id, service.status, 'Working')}
-                                    disabled={service.state == 'Completed'}
-                                    className="btn btn-xs bg-transparent"><IoIosCloudDone className="text-2xl text-green-500"></IoIosCloudDone>
-                                </button>
+                                <select
+                                    value={service.status}
+                                    onChange={(e) => handleStatus(service._id, service.status, e.target.value)}
+                                    className="select select-bordered w-full max-w-xs"
+                                >
+                                    <option value="Pending">Pending</option>
+                                    <option value="Working">Working</option>
+                                    <option value="Completed">Completed</option>
+                                </select>
                             </div>
                         </div>
                     )
