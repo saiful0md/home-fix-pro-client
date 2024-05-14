@@ -34,7 +34,8 @@ const ServiceDetails = () => {
         const dateData = startDate;
         const userName = form.userName.value;
         const userEmail = form.userEmail.value;
-        const price = form.price.value;
+        const price = parseFloat(form.price.value);
+        const status = 'Pending'
         const servicedata = {
             serviceId,
             serviceName,
@@ -44,7 +45,8 @@ const ServiceDetails = () => {
             dateData,
             userEmail,
             userName,
-            serviceProvider
+            serviceProvider,
+            status
         }
         console.log(servicedata);
         try{
@@ -57,7 +59,7 @@ const ServiceDetails = () => {
                     icon: 'success',
                     confirmButtonText: 'OK'
                 })
-                navigate('/serviceToDo')
+                navigate('/bookedServices')
             }
         }
         catch(err){
@@ -158,7 +160,7 @@ const ServiceDetails = () => {
                                         <label className="label">
                                             <span className="label-text">Price</span>
                                         </label>
-                                        <input type="text" name="price" readOnly defaultValue={'$' + price} placeholder="Price" className="input input-bordered" required />
+                                        <input type="text" name="price" readOnly defaultValue={ price} placeholder="Price" className="input input-bordered" required />
                                     </div>
                                     <div className="form-control ">
                                         <label className="label">

@@ -1,4 +1,4 @@
-/* eslint-disable react-hooks/exhaustive-deps */
+
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { FaEdit } from "react-icons/fa";
@@ -17,7 +17,8 @@ const ManageServices = () => {
     }
     useEffect(() => {
         getData()
-    }, [getData, user.email])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [ user.email])
 
     const handleDelete = async id => {
         try {

@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const Login = () => {
-    const { signIn, signinWithGoogle, } = useContext(AuthContext);
+    const { signIn, signinWithGoogle } = useContext(AuthContext);
     const location = useLocation()
     const navigate = useNavigate()
     const handleLogin = e => {
@@ -57,7 +57,6 @@ const Login = () => {
                 })
             })
     }
- 
     return (
         <div className=" min-h-screen bg-base-200 my-12">
             <div className="hero-content w-full p-4 lg:gap-4 gap-0 flex-col lg:flex-row-reverse">
@@ -95,7 +94,7 @@ const Login = () => {
                             <button onClick={handleGoogleLogin} className="w-10 h-10 rounded-full flex justify-center items-center bg-gray-200">
                                 <FcGoogle className="text-xl "></FcGoogle>
                             </button>
-                            <button  className="w-10 h-10 rounded-full flex justify-center items-center bg-gray-200">
+                            <button className="w-10 h-10 rounded-full flex justify-center items-center bg-gray-200">
                                 <FaGithub className="text-xl"></FaGithub>
                             </button>
                         </div>

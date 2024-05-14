@@ -18,7 +18,7 @@ const UpdateService = () => {
         const serviceName = form.serviceName.value;
         const serviceArea = form.serviceArea.value;
         const serviceDescription = form.serviceDescription.value;
-        const price = form.price.value;
+        const price = parseFloat(form.price.value);
         const servicedata = {
             serviceImage,
             serviceName,
