@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import ServiceCard from "../../components/PopularServices/ServiceCard";
 
 
@@ -23,9 +24,11 @@ const AllServices = () => {
         setSearch('')
         setSearchText('')
     }
-    console.log(searchText);
     return (
         <div className='my-12'>
+            <Helmet>
+                <title>HomeFixPro | Services</title>
+            </Helmet>
             <div className="flex items-center gap-3 justify-center">
                 <form
                     className="my-12"

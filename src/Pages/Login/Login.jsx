@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { Helmet } from "react-helmet-async";
 import { FaGithub } from "react-icons/fa6";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -59,6 +60,9 @@ const Login = () => {
     }
     return (
         <div className=" min-h-screen bg-base-200 my-12">
+            <Helmet>
+                <title>HomeFixPro | Login</title>
+            </Helmet>
             <div className="hero-content w-full p-4 lg:gap-4 gap-0 flex-col lg:flex-row-reverse">
                 <div className="lg:w-1/2 lg:flex hidden">
                     <img className="rounded-lg  h-[600px] w-full object-cover" src="https://i.ibb.co/SNV7yvz/buckets-paint-floor-53876-63280.jpg" alt="" />

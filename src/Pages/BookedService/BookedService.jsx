@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 
@@ -19,6 +20,9 @@ const BookedService = () => {
 
     return (
         <div className="my-12">
+            <Helmet>
+                <title>HomeFixPro | Booked-Service</title>
+            </Helmet>
             <h2 className="text-2xl font-bold text-center mb-12">My Booked Services <span className="badge text-white bg-amber-500 rounded-full">{booked.length}</span></h2>
             {/* if data is not found */}
             {booked.length === 0 && <div className="flex gap-6 p-6 bg-base-200 flex-col items-center border-2 max-w-4xl mx-auto">

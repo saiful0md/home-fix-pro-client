@@ -2,6 +2,7 @@ import axios from "axios";
 import { useContext, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { Helmet } from "react-helmet-async";
 import { ImCross } from "react-icons/im";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -74,6 +75,9 @@ const ServiceDetails = () => {
     }
     return (
         <div className="relative">
+            <Helmet>
+                <title>HomeFixPro | Service-Details</title>
+            </Helmet>
             <div className="card lg:flex-row-reverse lg:items-center bg-base-100 shadow-xl my-12">
                 <div className="lg:w-1/2">
                     <figure><img className="rounded-lg" src={serviceImage} alt={serviceName} /></figure>

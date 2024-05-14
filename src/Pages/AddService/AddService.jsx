@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useContext } from "react";
+import { Helmet } from "react-helmet-async";
 import { FaArrowLeft } from "react-icons/fa6";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -54,6 +55,9 @@ const AddService = () => {
     }
     return (
         <div className=" min-h-screen my-12">
+            <Helmet>
+                <title>HomeFixPro | Add-Service</title>
+            </Helmet>
             <Link to={'/'} className="w-8 h-8 flex items-center justify-center rounded-full bg-amber-500 text-white hover:bg-amber-600">
                 <FaArrowLeft></FaArrowLeft>
             </Link>

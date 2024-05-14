@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 
@@ -25,12 +26,14 @@ const ServiceToDo = () => {
                 confirmButtonText: 'OK'
             })
         }
-        const { data } = await axios.patch(`${import.meta.env.VITE_API_URL}/bookingStatus/${id}`, { status })
-        setBooked(data);
+        await axios.patch(`${import.meta.env.VITE_API_URL}/bookingStatus/${id}`, { status })
         getData()
     }
     return (
         <div className="my-12">
+            <Helmet>
+                <title>HomeFixPro | Service-To-Do</title>
+            </Helmet>
             <h2 className="text-2xl font-bold text-center mb-12">Service To Do <span className="badge text-white bg-amber-500 rounded-full">{booked.length}</span></h2>
             {/* if data is not found */}
             {booked.length === 0 && <div className="flex rounded-lg gap-6 p-6 bg-base-200 flex-col items-center border-2 max-w-4xl mx-auto">

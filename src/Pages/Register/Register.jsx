@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { FaEye, FaEyeSlash, FaGithub } from "react-icons/fa6";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
@@ -77,6 +78,9 @@ const Register = () => {
     }
     return (
         <div className=" min-h-screen bg-base-200">
+            <Helmet>
+                <title>HomeFixPro | Register</title>
+            </Helmet>
             <div className="hero-content w-full p-4 lg:gap-4 gap-0 flex-col lg:flex-row">
                 <div className="lg:w-1/2 lg:flex hidden">
                     <img className="rounded-lg  h-[750px] w-full object-cover" src="https://i.ibb.co/SNV7yvz/buckets-paint-floor-53876-63280.jpg" alt="" />

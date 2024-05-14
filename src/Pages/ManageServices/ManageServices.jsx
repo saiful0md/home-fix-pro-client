@@ -1,6 +1,7 @@
 
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { Link } from "react-router-dom";
@@ -57,6 +58,9 @@ const ManageServices = () => {
     }
     return (
         <div className="my-12">
+            <Helmet>
+                <title>HomeFixPro | Manage-Services</title>
+            </Helmet>
             <h2 className="text-2xl font-bold text-center mb-12">Manage My Services <span className="badge text-white bg-amber-500 rounded-full">{services.length}</span></h2>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                 {
