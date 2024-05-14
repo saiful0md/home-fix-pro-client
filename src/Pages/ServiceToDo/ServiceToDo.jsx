@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { IoIosCloudDone } from "react-icons/io";
+import Swal from "sweetalert2";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 
@@ -16,8 +17,18 @@ const ServiceToDo = () => {
         getData()
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [user.email])
-    console.log(booked);
-
+    const handleStatus = async (id, prevStatus, status) => {
+        if (prevStatus === status) {
+            return Swal.fire({
+                title: 'Error!',
+                text: 'Alrady added',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            })
+        }
+        const { data } = await axios.patch(`${import.meta.env.VITE_API_URL}/bookingStatus/${id}`, { status })
+        console.log(data);
+    }
     return (
         <div className="my-12">
             <h2 className="text-2xl font-bold text-center mb-12">Service To Do <span className="badge text-white bg-amber-500 rounded-full">{booked.length}</span></h2>
@@ -33,32 +44,42 @@ const ServiceToDo = () => {
                         <div key={service._id} className=" flex flex-col lg:flex-row items-center bg-red-100 bg-opacity-30 rounded-lg border-[15px]  border-amber-500 border-opacity-15 shadow-xl">
                             <figure><img className='lg:max-w-28 lg:ml-2 rounded-md' src={service.serviceImage} alt={service.serviceName} /></figure>
                             <div className="card-body">
-                                <div>
-                                    <p className=' font-semibold mb-4'>Service Provider:</p>
-                                    <div className="avatar flex items-center gap-4">
-                                        <div className="w-12 rounded-full">
-                                            <img src={service.serviceProvider.image} />
-                                        </div>
-                                        <p><span className='font-semibold'>Name:</span> {service.serviceProvider.name}</p>
-                                    </div>
-                                </div>
+
                                 <h2> <span className="font-semibold">Service Name:</span> {service.serviceName}</h2>
-                                <p title={service.serviceDescription}><span className='font-semibold'>Description:</span> { }...</p>
 
                                 <p><span className='font-semibold'>Price:</span> ${service.price}</p>
+                                <div>
+                                    <p className=' font-semibold mb-4'>Client Details:</p>
+                                    <div className="w-10  rounded-full">
+                                        <img className="rounded-full" src={service.userImage} />
+                                    </div>
+                                    <div>
+                                        <p><span className='font-semibold'>Name:</span> {service.userName}</p>
+                                        <p><span className='font-semibold'>Email:</span> {service.userEmail}</p>
+                                        <p> <span className='font-semibold'>Location:</span> {service.serviceArea}</p>
+                                    </div>
+                                </div>
 
                             </div>
                             <div className="lg:mr-4 mb-4 flex gap-4 lg:flex-col">
                                 <span
-                                    className={`badge h-7 font-bold
-                                 ${service.status === 'Pending' && 'bg-yellow-500'}
-                                 ${service.status === 'Working' && 'bg-red-500'}
-                                 ${service.status === 'Completed' && 'bg-green-500'}
+                                    className={`badge h-7 font-semibold
+                                 ${service.status === 'Pending' && 'bg-yellow-100/80 text-yellow-500'}
+                                 ${service.status === 'Working' && 'bg-red-100/80 text-red-500'}
+                                 ${service.status === 'Completed' && 'bg-green-100/80 text-green-500'}
                                  `}
                                 >{service.status}</span>
+                                {/* complete button */}
                                 <button
-                                    disabled={service.state !== 'Working'}
-                                    className="btn btn-xs bg-transparent"><IoIosCloudDone className="text-2xl text-green-500"></IoIosCloudDone> </button>
+                                    onClick={() => handleStatus(service._id, service.status, 'Working')}
+                                    disabled={service.state == 'Completed'}
+                                    className="btn btn-xs bg-transparent"><IoIosCloudDone className="text-2xl text-green-500"></IoIosCloudDone>
+                                </button>
+                                <button
+                                    onClick={() => handleStatus(service._id, service.status, 'Working')}
+                                    disabled={service.state == 'Completed'}
+                                    className="btn btn-xs bg-transparent"><IoIosCloudDone className="text-2xl text-green-500"></IoIosCloudDone>
+                                </button>
                             </div>
                         </div>
                     )

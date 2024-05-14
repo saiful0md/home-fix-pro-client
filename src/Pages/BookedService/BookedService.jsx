@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
-import { IoIosCloudDone } from "react-icons/io";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 
@@ -20,7 +19,7 @@ const BookedService = () => {
 
     return (
         <div className="my-12">
-            <h2 className="text-2xl font-bold text-center mb-12">Booked Services <span className="badge text-white bg-amber-500 rounded-full">{booked.length}</span></h2>
+            <h2 className="text-2xl font-bold text-center mb-12">My Booked Services <span className="badge text-white bg-amber-500 rounded-full">{booked.length}</span></h2>
             {/* if data is not found */}
             {booked.length === 0 && <div className="flex gap-6 p-6 bg-base-200 flex-col items-center border-2 max-w-4xl mx-auto">
                 <h2 className="text-4xl text-warning">Oops! </h2>
@@ -35,30 +34,27 @@ const BookedService = () => {
                             <div className="card-body">
                                 <div>
                                     <p className=' font-semibold mb-4'>Service Provider:</p>
-                                    <div className="avatar flex items-center gap-4">
-                                        <div className="w-12 rounded-full">
-                                            <img src={service.serviceProvider.image} />
-                                        </div>
+                                    <div className="w-10  rounded-full">
+                                        <img className="rounded-full" src={service.serviceProvider.image} />
+                                    </div>
+                                    <div>
                                         <p><span className='font-semibold'>Name:</span> {service.serviceProvider.name}</p>
+                                        <p><span className='font-semibold'>Email:</span> {service.serviceProvider.email}</p>
                                     </div>
                                 </div>
                                 <h2> <span className="font-semibold">Service Name:</span> {service.serviceName}</h2>
-                                <p title={service.serviceDescription}><span className='font-semibold'>Description:</span> { }...</p>
 
                                 <p><span className='font-semibold'>Price:</span> ${service.price}</p>
 
                             </div>
                             <div className="lg:mr-4 mb-4 flex gap-4 lg:flex-col">
                                 <span
-                                    className={`badge h-7 font-bold
-                                 ${service.status === 'Pending' && 'bg-yellow-500'}
-                                 ${service.status === 'Working' && 'bg-red-500'}
-                                 ${service.status === 'Completed' && 'bg-green-500'}
+                                    className={`badge h-7 font-semibold
+                                 ${service.status === 'Pending' && 'bg-yellow-100/80 text-yellow-500'}
+                                 ${service.status === 'Working' && 'bg-red-100/80 text-red-500'}
+                                 ${service.status === 'Completed' && 'bg-green-100/80 text-green-500'}
                                  `}
                                 >{service.status}</span>
-                                <button
-                                    disabled={service.state !== 'Working'}
-                                    className="btn btn-xs bg-transparent"><IoIosCloudDone className="text-2xl text-green-500"></IoIosCloudDone> </button>
                             </div>
                         </div>
                     )

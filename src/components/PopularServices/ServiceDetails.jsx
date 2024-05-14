@@ -17,7 +17,7 @@ const ServiceDetails = () => {
 
     const handleBookedService = async e => {
         e.preventDefault();
-        if(user?.email === serviceProvider.email){
+        if (user?.email === serviceProvider.email) {
             Swal.fire({
                 title: 'Error!',
                 text: 'You are a Provider',
@@ -33,6 +33,7 @@ const ServiceDetails = () => {
         const serviceArea = form.serviceArea.value;
         const dateData = startDate;
         const userName = form.userName.value;
+        const userImage = user.photoURL;
         const userEmail = form.userEmail.value;
         const price = parseFloat(form.price.value);
         const status = 'Pending'
@@ -45,14 +46,15 @@ const ServiceDetails = () => {
             dateData,
             userEmail,
             userName,
+            userImage,
             serviceProvider,
-            status
+            status,
         }
         console.log(servicedata);
-        try{
-            const {data} = await axios.post(`${import.meta.env.VITE_API_URL}/booking`, servicedata)
+        try {
+            const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/booking`, servicedata)
             console.log(data);
-            if(data.insertedId){
+            if (data.insertedId) {
                 Swal.fire({
                     title: "Success!",
                     text: 'Booked Successfully',
@@ -62,11 +64,11 @@ const ServiceDetails = () => {
                 navigate('/bookedServices')
             }
         }
-        catch(err){
+        catch (err) {
             console.log(err);
             Swal.fire({
                 title: "Oops!",
-                text: err.message ,
+                text: err.message,
                 icon: 'error',
                 confirmButtonText: 'try again'
             })
@@ -160,7 +162,7 @@ const ServiceDetails = () => {
                                         <label className="label">
                                             <span className="label-text">Price</span>
                                         </label>
-                                        <input type="text" name="price" readOnly defaultValue={ price} placeholder="Price" className="input input-bordered" required />
+                                        <input type="text" name="price" readOnly defaultValue={price} placeholder="Price" className="input input-bordered" required />
                                     </div>
                                     <div className="form-control ">
                                         <label className="label">

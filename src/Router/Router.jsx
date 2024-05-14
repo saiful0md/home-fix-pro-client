@@ -55,7 +55,6 @@ const Router = createBrowserRouter([
                 element: <ProtectorRuout>
                     <ServiceToDo></ServiceToDo>
                 </ProtectorRuout>,
-                loader: () => fetch(`${import.meta.env.VITE_API_URL}/serviceToDo`)
             },
             {
                 path: '/manageService',
