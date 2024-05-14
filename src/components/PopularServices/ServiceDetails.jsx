@@ -50,10 +50,8 @@ const ServiceDetails = () => {
             serviceProvider,
             status,
         }
-        console.log(servicedata);
         try {
             const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/booking`, servicedata)
-            console.log(data);
             if (data.insertedId) {
                 Swal.fire({
                     title: "Success!",
@@ -65,12 +63,11 @@ const ServiceDetails = () => {
             }
         }
         catch (err) {
-            console.log(err);
             Swal.fire({
-                title: "Oops!",
-                text: err.message,
-                icon: 'error',
-                confirmButtonText: 'try again'
+                title: "info!",
+                text: err.response.data,
+                icon: 'success',
+                confirmButtonText: 'Done'
             })
         }
 
