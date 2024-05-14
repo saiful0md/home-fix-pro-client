@@ -26,14 +26,14 @@ const ServiceToDo = () => {
             })
         }
         const { data } = await axios.patch(`${import.meta.env.VITE_API_URL}/bookingStatus/${id}`, { status })
-        console.log(data);
+        setBooked(data);
         getData()
     }
     return (
         <div className="my-12">
             <h2 className="text-2xl font-bold text-center mb-12">Service To Do <span className="badge text-white bg-amber-500 rounded-full">{booked.length}</span></h2>
             {/* if data is not found */}
-            {booked.length === 0 && <div className="flex gap-6 p-6 bg-base-200 flex-col items-center border-2 max-w-4xl mx-auto">
+            {booked.length === 0 && <div className="flex rounded-lg gap-6 p-6 bg-base-200 flex-col items-center border-2 max-w-4xl mx-auto">
                 <h2 className="text-4xl text-warning">Oops! </h2>
                 <p className="text-lg text-info">It looks like the service you&apos;re trying to access hasn&apos;t been added yet.</p>
                 <p className="text-xl text-accent">Please add the service to continue</p>

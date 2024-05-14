@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Root from "../LayOut/Root";
 import AddService from "../Pages/AddService/AddService";
+import AllServices from "../Pages/AllServices/AllServices";
 import BookedService from "../Pages/BookedService/BookedService";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Home from "../Pages/Home/Home";
@@ -21,6 +22,10 @@ const Router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home></Home>,
+            },
+            {
+                path: '/services',
+                element: <AllServices></AllServices>,
             },
             {
                 path: '/login',
