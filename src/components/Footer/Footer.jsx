@@ -1,3 +1,4 @@
+import { FaFacebook, FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa6";
 
 
 const Footer = () => {
@@ -23,10 +24,11 @@ const Footer = () => {
                 <a className="link link-hover">Press kit</a>
             </nav>
             <nav>
-                <h6 className="footer-title">Legal</h6>
-                <a className="link link-hover">Terms of use</a>
-                <a className="link link-hover">Privacy policy</a>
-                <a className="link link-hover">Cookie policy</a>
+                <h6 className="footer-title">Social</h6>
+                <a className="link link-hover"><FaFacebook className="text-2xl text-blue-700"></FaFacebook></a>
+                <a className="link link-hover"><FaTwitter className="text-2xl text-blue-400"></FaTwitter></a>
+                <a className="link link-hover"><FaLinkedin className="text-2xl text-blue-600"></FaLinkedin></a>
+                <a className="link link-hover"><FaGithub className="text-2xl "></FaGithub></a>
             </nav>
         </footer>
     );
