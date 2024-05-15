@@ -14,7 +14,7 @@ Currently, two official plugins are available:
 # Website name
 - Home Fix Pro
 # live link
-- 
+- https://cool-beignet-e01716.netlify.app
 
 
 # npm package
