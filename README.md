@@ -8,3 +8,29 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
 
+# Assignment Variant Is
+- Assignment_category_0002
+
+# Website name
+- Home Fix Pro
+# live link
+- 
+
+
+# npm package
+- axios
+- firebase
+- localforage
+- match-sorter
+- prop-types
+- react
+- react-awesome-reveal
+- react-datepicker
+- react-dom
+- react-fast-marquee
+- react-helmet-async
+- react-icons
+- react-router-dom
+- sort-by
+- sweetalert2
+- swiper
