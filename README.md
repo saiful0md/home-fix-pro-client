@@ -15,7 +15,13 @@ Currently, two official plugins are available:
 - Home Fix Pro
 # live link
 - https://cool-beignet-e01716.netlify.app
+## Installation
 
+Use the package manager 
+
+```bash
+npm install
+```
 
 # npm package
 - axios
